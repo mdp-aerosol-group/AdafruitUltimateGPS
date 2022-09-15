@@ -157,14 +157,18 @@ julia> AdafruitUltimateGPS.get_current_RMC()
 ```
 """
 function get_current_RMC()
-    RMC = @as x begin
-        deepcopy(dataBuffer[1:end])
-        String(x) 
-        split(x, "\n") 
-        filter(is_valid_NMEA, x) 
-        filter(is_valid_RMC, x) 
-        map(decode_RMC, x)
-        x[end]
+    RMC = try
+        @as x begin
+            deepcopy(dataBuffer[1:end])
+            String(x) 
+            split(x, "\n") 
+            filter(is_valid_NMEA, x) 
+            filter(is_valid_RMC, x) 
+            map(decode_RMC, x)
+            x[end]
+        end
+    catch
+        missing
     end
     return RMC
 end
