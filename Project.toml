@@ -1,0 +1,10 @@
+name = "AdafruitUltimateGPS"
+uuid = "4fe4fcc7-c8f5-4bd9-9e9b-47d3a0e00d04"
+authors = ["Markus Petters <mdpetter@ncsu.edu>"]
+version = "0.1.0"
+
+[deps]
+DataStructures = "864edb3b-99cc-5e75-8d2d-829cb0a9cfe8"
+Dates = "ade2ca70-3891-5945-98fb-dc099432e06a"
+Lazy = "50d2b5c4-7a5e-59d5-8109-a42b560f39c0"
+LibSerialPort = "a05a14c7-6e3b-5ba9-90a2-45558833e1df"
