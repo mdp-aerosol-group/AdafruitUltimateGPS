@@ -92,7 +92,7 @@ function stream(port::Ptr{LibSerialPort.Lib.SPPort}, file::String)
 
     while(true)
         read(port, file)
-        sleep(1)
+        sleep(0.1)
     end
 
     wait(Godot)
