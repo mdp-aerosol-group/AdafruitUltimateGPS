@@ -43,6 +43,13 @@ function config(portname::String)
     return port
 end
 
+# Generate valid NMEA message to send to sensor
+genmsg(x) = @chain Vector{UInt8}(x) reduce(⊻, _) string(_, base = 16) "\$"*x*"*"*_*"\r\n" uppercase
+
+# Send message to sensor
+send(port, msg) = @chain genmsg(msg) LibSerialPort.sp_nonblocking_write(port, _)
+
+
 """
 function stream(port::Ptr{LibSerialPort.Lib.SPPort}, file::String)
 
@@ -59,6 +66,12 @@ julia>
 """
 function stream(port::Ptr{LibSerialPort.Lib.SPPort}, file::String)
     Godot = @task _ -> false
+
+    # Only take RMC messages
+    send(port, "PMTK314,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0")
+    
+    # Set update frequency 10 Hz
+    send(port, "PMTK220,100")
 
     run(`touch $(file)`)
 
