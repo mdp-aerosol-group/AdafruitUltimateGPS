@@ -4,6 +4,7 @@ using LibSerialPort
 using Dates
 using DataStructures
 using Lazy
+using Chain
 
 const dataBuffer = CircularBuffer{UInt8}(5000)
 
