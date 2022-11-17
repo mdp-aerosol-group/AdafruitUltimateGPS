@@ -7,6 +7,11 @@ Julia language interface to communicate with the Adafruit Ultimate GPS sensor
 
 The [Adafruit Ultimate GPS](https://www.adafruit.com/product/4279) device is GPS module that communicates NMEA messages via RS232. 
 
+### Sensor Housing
+![](doc/assets/case_assembly.png)
+
+The  housing was printed using ASA plastic. Inserts were added post print by widening the bottom holes with sodder.
+
 ## Installation
 
 ```julia
